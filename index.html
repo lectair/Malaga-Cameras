@@ -1,0 +1,1999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #grid-container {
+      display: grid;
+      grid-template-columns: repeat(11, 1fr);
+      grid-template-rows: repeat(8, 1fr);
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .grid-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    img {
+      max-width: 150%;
+      max-height: 70%; /* Ajustar la altura máxima para dejar espacio al texto */
+      object-fit: contain;
+    }
+
+    .camera-name {
+      margin-top: -80px;
+      text-align: center;
+      font-size: 80%; /* Ajustar el tamaño de la fuente */
+      color: white;
+    }
+</style>
+</head>
+<body>
+  <div id="grid-container"></div>
+
+  <script>
+    const jsonData = {
+      "features": [{
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c64",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [372777.7099826, 4066700.7437097]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339327,
+            "name": "TV24-PTE. MEDITERRÁNEO",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-24.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-7/tv-24/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c63",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [373012.33334127, 4067717.5141399]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339328,
+            "name": "TV25-RAMÓN Y CAJAL",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2025.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-7/tv-25/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c62",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [373062.04559077, 4067564.1240103]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339329,
+            "name": "TV44-THUILLER",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2044.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-5/tv-44/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c61",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [377218.50934079, 4064963.811787]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339330,
+            "name": "TV04-JS ELCANO-PILONES",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2004.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-2/tv-04/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c60",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [372001.84603446, 4066288.3214366]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339331,
+            "name": "TV46-SIMON BOLIVAR",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2046.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-4/tv-46/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c5f",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [371506.77368596, 4065507.2519187]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339332,
+            "name": "TV75-MARTINEZ DE LA ROSA",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2075.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-4/tv-75/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c5e",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [371856.50493259, 4065541.497129]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339333,
+            "name": "TV11-EUGENIO GROSS",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2011.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-4/tv-11/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c5d",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [373665.48165963, 4065809.0931169]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339334,
+            "name": "TV78-C. EPIDEMIA-GORDON",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2078.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-78/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c5c",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [373481.65012822, 4066417.7753625]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339335,
+            "name": "TV79-PABLO PINEDA",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2079.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-79/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c5b",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [372811.30247605, 4065543.114569]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339336,
+            "name": "TV47-MOLINILLO",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2047.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-47/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c5a",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [372803.61247082, 4064532.594094]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339337,
+            "name": "TV81-ATARAZANAS",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2081.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv81/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c59",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [372255.98827376, 4065554.0639232]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339338,
+            "name": "TV80-HOSPITAL CIVIL",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2080.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-4/tv-80/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c58",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [373062.04559077, 4067564.1240103]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339339,
+            "name": "TV44-THUILLER",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2044.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-3/TV-44/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c57",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [373012.33334127, 4067717.5141399]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339340,
+            "name": "TV25-RAMÓN Y CAJAL",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2025.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-3/tv-25/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c56",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [371403.78462107, 4064941.4083898]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339341,
+            "name": "TV12-BERMÚDEZ",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2012.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-4/tv-12/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c55",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [371611.36721609, 4064310.6092074]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339342,
+            "name": "TV74-AVDA. DE LA AURORA",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2074.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-6/tv-74/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c54",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [372607.33919467, 4066175.2083878]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339343,
+            "name": "TV76-PUENTE DE LA ROSALEDA",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2076.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-5/tv-76/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c53",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [370534.99975087, 4060362.9999201]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339344,
+            "name": "TV16-SACABA",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-16.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-16/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c52",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [372069.51678467, 4064940.8958445]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339345,
+            "name": "TV39-MÁRMOLES",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2039.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-39/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c51",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [371378.1095942, 4063745.5374658]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339346,
+            "name": "TV34-LA UNIÓN",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2034.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-6/tv-34/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c50",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [373821.60527472, 4064779.39187]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339347,
+            "name": "TV06-PSO PARQUE",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-06.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-06/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c4f",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [373224.66037183, 4064485.7670973]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339348,
+            "name": "TV07-BOQUETE DEL MUELLE",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-07.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-07/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c4e",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [372335.56118202, 4064378.7440609]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339349,
+            "name": "TV08-MANUEL ALCANTARA",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-08.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-08/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c4d",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [373808.30208421, 4064873.1603097]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339350,
+            "name": "TV17-LA CORACHA",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-17.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-17/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c4c",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [373415.26071573, 4065060.2713552]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339351,
+            "name": "TV18-VICTORIA",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-18.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-18/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c4b",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [374101.47711425, 4064541.5296374]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339352,
+            "name": "TV19-CÁNOVAS",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-19.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-19/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c4a",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [373901.64415493, 4064703.835527]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339353,
+            "name": "TV20-PSO. CURAS",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-20.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-20/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c49",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [372952.27288377, 4064472.6298077]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339354,
+            "name": "TV28-ALAMEDA",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-28.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-28/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c48",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [372832.62482508, 4064031.6031875]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339355,
+            "name": "TV30-ALAMEDA DE COLÓN",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-30.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-30/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c47",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [372305.37344143, 4064539.5167856]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339356,
+            "name": "TV36-HILERA",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-36.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-36/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c46",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [372611.05433961, 4064278.2528404]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339357,
+            "name": "TV37-CORREOS",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-37.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-37/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c45",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [374474.26217393, 4064884.7478402]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339358,
+            "name": "TV38-PRÍES",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-38.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-38/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c44",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [372580.72772421, 4065523.9990628]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339359,
+            "name": "TV40-PTE. ARMIÑÁN",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-40.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-40/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c43",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [372721.78859516, 4064957.0062954]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339360,
+            "name": "TV41-CARRETERÍA",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-41.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-41/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c42",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [373126.59995405, 4065240.9955422]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339361,
+            "name": "TV42-ÁLAMOS",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-42.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-42/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c41",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [373770.78361256, 4065513.0338702]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339362,
+            "name": "TV60-VICTORIA - FERRANDIZ",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-60.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-60/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c40",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [373600.36176909, 4066236.8763446]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339363,
+            "name": "TV61-PZA OLLETAS",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-61.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-61/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c3f",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [372793.67087543, 4065988.3647716]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339364,
+            "name": "TV62-ROSARIO PINO",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-62.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-62/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c3e",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [367113.59784555, 4067295.2307783]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339365,
+            "name": "TV57-PTO TORRE-J. LATINO",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-57.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-10/tv-57/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c3d",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [369329.83751855, 4065632.2026264]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339366,
+            "name": "TV63-JUAN FRANCES BOSCA",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-63.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-10/tv-63/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c3c",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [379128.49792588, 4064692.2943954]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339367,
+            "name": "TV02-CTRA ALMERÍA",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-02.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-2/tv-02/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c3b",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [378396.46025955, 4064805.7636803]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339368,
+            "name": "TV03-JS ELCANO-ESTACIÓN",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-02.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-2/tv-03/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c3a",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [375281.591414, 4065023.3179519]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339369,
+            "name": "TV29-IDRIS",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-29.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-2/tv-29/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c39",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [374515.70206152, 4064762.4151919]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339370,
+            "name": "TV86-GUTEMBERG",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-86.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-2/tv-86/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c38",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [372987.58820346, 4066695.0995087]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339371,
+            "name": "TV88. GUERRERO STRACHAN",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-88.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-3/TV-88/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c37",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [372777.7099826, 4066700.7437097]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339372,
+            "name": "TV24-PTE. MEDITERRÁNEO",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-24.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-3/tv-24/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c36",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [370596.3144693, 4065064.4723119]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339373,
+            "name": "TV22-CARLOS HAYA",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-22.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-4/tv-22/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c35",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [371002.43607305, 4065845.3565104]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339374,
+            "name": "TV23-CMNO. SUÁREZ",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-23.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-4/tv-23/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c34",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [370040.63794084, 4065235.8740171]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339375,
+            "name": "TV53-C.HAYA - V. INCLÁN",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-53.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-4/tv-53/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c33",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [372569.67237535, 4068382.4142602]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339376,
+            "name": "TV50-VIRREINAS",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-50.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-5/tv-50/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c32",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [372030.53642863, 4066572.6859575]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339377,
+            "name": "TV71-VALLE INCLAN",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-71.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-5/tv-71/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c31",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [371676.91644197, 4064557.507284]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339378,
+            "name": "TV10-PTE AMERICAS",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-10.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-6/tv-10/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c30",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [370851.07736443, 4063816.9596046]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339379,
+            "name": "TV35-JUAN XXIII - GASSET",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-35.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-6/tv-35/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c2f",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [370379.95204264, 4063721.0079331]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339380,
+            "name": "TV45-ORTEGA Y GASSET",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-45.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-6/tv-45/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c2e",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [371763.10779476, 4064490.5147513]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339381,
+            "name": "TV65-AVDA ANDALUCIA",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-65.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-6/tv-65/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c2d",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [370566.27732548, 4063365.2231836]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339382,
+            "name": "TV66-CMNO SAN RAFAEL",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-66.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-6/tv-66/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c2c",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [371783.35686854, 4064854.5228409]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339383,
+            "name": "TV85-SANTA ELENA",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-85.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-6/tv-85/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c2b",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [371322.66628992, 4062988.0984639]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339384,
+            "name": "TV13-JUAN XXIII",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-13.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-7/tv-13/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c2a",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [371773.479798, 4062614.8873868]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339385,
+            "name": "TV15-ANTONIO MACHADO",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-15.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-7/tv-15/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c29",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [370534.99975087, 4060362.9999201]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339386,
+            "name": "TV16-SACABA",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-16.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-7/tv-16/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c28",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [371393.25029484, 4062529.1568985]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339387,
+            "name": "TV26-TABACALERA",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-26.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-7/tv-26/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c27",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [371066.05690362, 4061415.9869597]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339388,
+            "name": "TV27-GUINDOS",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-27.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-7/tv-27/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c26",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [371728.21927189, 4063220.5115047]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339389,
+            "name": "TV31-AYALA",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2031.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-7/tv-31/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c25",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [370217.18216948, 4062552.783492]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339390,
+            "name": "TV32-AVDA. EUROPA",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-32.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-7/tv-32/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c24",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [369831.01794653, 4061533.9498473]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339391,
+            "name": "TV33-AVDA. MOLIERE",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-33.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-7/tv-33/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c23",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [370606.72001151, 4062331.1754866]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339392,
+            "name": "TV48-AVDA.VELÁZQUEZ",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-48.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-7/tv-48/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c22",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [372477.41890514, 4063607.4228201]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339393,
+            "name": "TV52-A. MACHADO - EL BULTO",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-52.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-7/tv-52/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c21",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [370197.32487017, 4061106.8999229]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339394,
+            "name": "TV77-AVDA MOLIERE - PATO",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-77.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-7/tv-77/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c20",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [370600.93051756, 4061942.1152951]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339395,
+            "name": "TV83-REALENGA DE SAN LUIS",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-83.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-7/tv-83/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c1f",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [369597.11709631, 4061493.846561]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339396,
+            "name": "TV84-EDUARDO TOLDRÁ",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-84.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-7/tv-84/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c1e",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [366505.3546963, 4061908.3606331]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339397,
+            "name": "TV89-JOAQUÍN VARGAS",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-89.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-8/tv-89/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c1d",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [368311.49044882, 4061039.2552294]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339398,
+            "name": "TV90-HERMANN HESSE",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-90.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-8/tv-90/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c1c",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [361549.56371541, 4066198.1584414]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339399,
+            "name": "TV82-ROTONDA PTA",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-82.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-9/tv-82/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c1b",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [362564.6215816, 4065365.5031615]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339400,
+            "name": "TV87-EL BONI - CAMPANILLAS",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/recursos/movilidad/camaras_trafico/TV-87.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-9/tv-87/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c1a",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [369661.99097214, 4064789.3178523]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339401,
+            "name": "TV21-CARRIL CAPITÁN",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2031.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-11/tv-21/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c19",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [370012.10025733, 4063634.460855]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339402,
+            "name": "TV58-ORTEGA GASSET - A7",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2048.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-6/tv-58/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c18",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [367636.66682465, 4067068.4242193]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339403,
+            "name": "TV56-PTO TORRE-OROZCO",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2030.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-10/tv-56/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c17",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [371382.44817189, 4063904.3949858]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339404,
+            "name": "TV51-PSO. DE LOS TILOS",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2027.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-6/tv-51/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c16",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [368905.26686319, 4066005.1006986]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339405,
+            "name": "TV54-EL ATABAL",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2028.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-10/tv-54/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c15",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [370115.27478305, 4064723.2593098]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339406,
+            "name": "TV49-PZA BERGAMIN",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2026.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-6/tv-49/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c14",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [373172.05441174, 4065462.7311203]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339407,
+            "name": "TV43-DOS ACERAS",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2043.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-1/tv-43/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c13",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [369122.20385028, 4063334.6921372]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339408,
+            "name": "TV64-MARIA ZAMBRANO",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2035.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-6/tv-64/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c12",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [369478.14533543, 4063417.8470128]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339409,
+            "name": "TV67-FERIA NORTE",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2009.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-6/tv-67/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c11",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [368575.95471227, 4063343.9079666]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339410,
+            "name": "TV68-PARÍS",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2077.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-6/tv-68/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c10",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [368049.12151399, 4063493.3939533]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339411,
+            "name": "TV69-LOS VEGAS",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2007.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-6/tv-69/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }, {
+        "type": "Feature",
+        "id": "da_camarasTrafico.fid-7e811540_18c3d0f892a_-3c0f",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [375086.31468461, 4065012.3831093]
+        },
+        "geometry_name": "wkb_geometry",
+        "properties": {
+            "ogc_fid": 1339412,
+            "name": "TV70-PSO. LIMONAR",
+            "description": " <div style='float: left; text-align: left'><img style='margin-right: 20px; max-width:240px;' src='https://ctraficomovilidad.malaga.eu/cst_ctrafico/camara2006.jpg'></div> <a href='https://movilidad.malaga.eu/es/servicios/camaras-de-trafico/distrito-2/tv-70/index.html'>Ver detalle cámara</a> ",
+            "timestamp": null,
+            "begin": null,
+            "end": null,
+            "altitudemode": "",
+            "tessellate": -1,
+            "extrude": 0,
+            "visibility": -1,
+            "draworder": 0,
+            "icon": ""
+        }
+    }]
+    };
+
+    function updateGrid() {
+      const gridContainer = document.getElementById("grid-container");
+
+      // Vaciar el contenido actual
+      gridContainer.innerHTML = "";
+
+      // Crear un contenedor temporal fuera del DOM para pre-cargar imágenes
+      const tempContainer = document.createElement("div");
+
+      // Manejar la carga de imágenes de manera asíncrona
+      function loadImageAsync(url) {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => resolve(img);
+          img.onerror = (error) => reject(error);
+          img.src = url;
+        });
+      }
+
+      // Cargar las imágenes de manera asíncrona y reemplazar en la cuadrícula
+      async function loadImagesAsync() {
+        // Ordenar las cámaras alfabéticamente por nombre
+        jsonData.features.sort((a, b) => a.properties.name.localeCompare(b.properties.name));
+
+        for (const feature of jsonData.features) {
+            const cameraName = feature.properties.name;
+            const cameraUrl = feature.properties.description.match(/src='(.*?)'/)[1];
+            const img = await loadImageAsync(cameraUrl);
+
+            const gridItem = document.createElement("div");
+            gridItem.classList.add("grid-item");
+
+            const imgContainer = document.createElement("div");
+            imgContainer.appendChild(img);
+
+            const cameraNameElement = document.createElement("div");
+            cameraNameElement.classList.add("camera-name");
+            cameraNameElement.innerText = cameraName;
+
+            gridItem.appendChild(imgContainer);
+            gridItem.appendChild(cameraNameElement);
+
+            gridContainer.appendChild(gridItem);
+        }
+    }
+
+      // Llamar a la función para cargar imágenes de manera asíncrona
+      loadImagesAsync();
+    }
+
+    // Actualizar la cuadrícula cada 2 segundos
+    setInterval(updateGrid, 6375);
+
+    // Cargar la cuadrícula inicialmente
+    updateGrid();
+  </script>
+</body>
+</html>
